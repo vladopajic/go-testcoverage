@@ -8,6 +8,11 @@ import (
 	"github.com/vladopajic/testcoverage/pkg/testcoverage"
 )
 
+// Version is the git reference injected at build
+//
+//nolint:gochecknoglobals // must be global var
+var Version string
+
 //nolint:forbidigo // relax
 func main() {
 	cfg, err := readConfig()
