@@ -8,6 +8,9 @@ import (
 	"github.com/vladopajic/testcoverage/pkg/testcoverage"
 )
 
+// Version is the git reference injected at build
+var Version string
+
 //nolint:forbidigo // relax
 func main() {
 	cfg, err := readConfig()
