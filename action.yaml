@@ -1,12 +1,12 @@
-name: testcoverage
+name: go-testcoverage
 author: vladopajic
-description: testcoverage is tool which reports issues when test coverage of a file or package is below set threshold.
+description: go-testcoverage is tool which reports issues when test coverage of a file or package is below set threshold.
 inputs:
   config:
     description: Path of configuration file.
     required: true
 runs:
   using: docker
-  image: docker://ghcr.io/vladopajic/testcoverage:v0.1.0
+  image: docker://ghcr.io/vladopajic/go-testcoverage:v0.1.0
   args:
     - -config=${{ inputs.config }}

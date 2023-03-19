@@ -11,11 +11,11 @@ COPY ./ ./
 ARG VERSION
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 \
     go build -ldflags "-X main.Version=${VERSION}" \
-    -o testcoverage .
+    -o go-testcoverage .
 
 FROM gcr.io/distroless/base:latest
 WORKDIR /
-COPY --from=builder /workspace/testcoverage .
+COPY --from=builder /workspace/go-testcoverage .
 COPY --from=builder /usr/local/go/bin/go /usr/local/go/bin/go
 ENV PATH="${PATH}:/usr/local/go/bin"
-ENTRYPOINT ["/testcoverage"]
+ENTRYPOINT ["/go-testcoverage"]

@@ -33,14 +33,14 @@ jobs:
       - name: Build cross-platform binaries
         env:
           PLATFORMS: darwin/amd64 darwin/arm64 windows/amd64 linux/amd64 linux/arm64
-          OUTPUT_PATH_FORMAT: ./bin/${{ env.RELEASE_VERSION }}/{{.OS}}/{{.Arch}}/testcoverage
+          OUTPUT_PATH_FORMAT: ./bin/${{ env.RELEASE_VERSION }}/{{.OS}}/{{.Arch}}/go-testcoverage
         run: |
           gox -osarch="${PLATFORMS}" -ldflags "-X main.Version=${RELEASE_VERSION}" -output "${OUTPUT_PATH_FORMAT}"
       - name: Test correct version injection
         run: |
-          chmod +x ./bin/${{ env.RELEASE_VERSION }}/linux/amd64/testcoverage
-          version=$(./bin/${{ env.RELEASE_VERSION }}/linux/amd64/testcoverage --version)
-          if [ "${version}" != "testcoverage ${{ env.RELEASE_VERSION }}" ]; then
+          chmod +x ./bin/${{ env.RELEASE_VERSION }}/linux/amd64/go-testcoverage
+          version=$(./bin/${{ env.RELEASE_VERSION }}/linux/amd64/go-testcoverage --version)
+          if [ "${version}" != "go-testcoverage ${{ env.RELEASE_VERSION }}" ]; then
             echo "Version injection failed. Expected '${{ env.RELEASE_VERSION }}', got '${version}'"
             exit 1
           fi
@@ -57,11 +57,11 @@ jobs:
         env:
           OUT_BASE: ./bin/${{ env.RELEASE_VERSION }}
         run: |
-          tar -czvf "${OUT_BASE}/darwin/amd64/testcoverage_darwin_amd64.tar.gz" -C "${OUT_BASE}/darwin/amd64" testcoverage
-          tar -czvf "${OUT_BASE}/darwin/arm64/testcoverage_darwin_arm64.tar.gz" -C "${OUT_BASE}/darwin/arm64" testcoverage
-          tar -czvf "${OUT_BASE}/windows/amd64/testcoverage_windows_amd64.tar.gz" -C "${OUT_BASE}/windows/amd64" testcoverage.exe
-          tar -czvf "${OUT_BASE}/linux/amd64/testcoverage_linux_amd64.tar.gz" -C "${OUT_BASE}/linux/amd64" testcoverage
-          tar -czvf "${OUT_BASE}/linux/arm64/testcoverage_linux_arm64.tar.gz" -C "${OUT_BASE}/linux/arm64" testcoverage
+          tar -czvf "${OUT_BASE}/darwin/amd64/go-testcoverage_darwin_amd64.tar.gz" -C "${OUT_BASE}/darwin/amd64" go-testcoverage
+          tar -czvf "${OUT_BASE}/darwin/arm64/go-testcoverage_darwin_arm64.tar.gz" -C "${OUT_BASE}/darwin/arm64" go-testcoverage
+          tar -czvf "${OUT_BASE}/windows/amd64/go-testcoverage_windows_amd64.tar.gz" -C "${OUT_BASE}/windows/amd64" go-testcoverage.exe
+          tar -czvf "${OUT_BASE}/linux/amd64/go-testcoverage_linux_amd64.tar.gz" -C "${OUT_BASE}/linux/amd64" go-testcoverage
+          tar -czvf "${OUT_BASE}/linux/arm64/go-testcoverage_linux_arm64.tar.gz" -C "${OUT_BASE}/linux/arm64" go-testcoverage
       - name: Create release
         env:
           OUT_BASE: ./bin/${{ env.RELEASE_VERSION }}
@@ -71,11 +71,11 @@ jobs:
           gh release create ${{ env.RELEASE_VERSION }} \
             -t "$(jq -r .name tmp-release-notes.json)" \
             -F tmp-release-notes.md \
-            "${OUT_BASE}/darwin/amd64/testcoverage_darwin_amd64.tar.gz#testcoverage_osx_amd64" \
-            "${OUT_BASE}/darwin/arm64/testcoverage_darwin_arm64.tar.gz#testcoverage_osx_arm64" \
-            "${OUT_BASE}/windows/amd64/testcoverage_windows_amd64.tar.gz#testcoverage_windows_amd64" \
-            "${OUT_BASE}/linux/amd64/testcoverage_linux_amd64.tar.gz#testcoverage_linux_amd64" \
-            "${OUT_BASE}/linux/arm64/testcoverage_linux_arm64.tar.gz#testcoverage_linux_arm64"
+            "${OUT_BASE}/darwin/amd64/go-testcoverage_darwin_amd64.tar.gz#go-testcoverage_osx_amd64" \
+            "${OUT_BASE}/darwin/arm64/go-testcoverage_darwin_arm64.tar.gz#go-testcoverage_osx_arm64" \
+            "${OUT_BASE}/windows/amd64/go-testcoverage_windows_amd64.tar.gz#go-testcoverage_windows_amd64" \
+            "${OUT_BASE}/linux/amd64/go-testcoverage_linux_amd64.tar.gz#go-testcoverage_linux_amd64" \
+            "${OUT_BASE}/linux/arm64/go-testcoverage_linux_arm64.tar.gz#go-testcoverage_linux_arm64"
       - name: Update the major version tag
         id: majorver
         uses: actions/publish-action@v0.1.0
@@ -99,6 +99,6 @@ jobs:
           build-args: |
             VERSION=${{ env.RELEASE_VERSION }}
           tags: |
-            ghcr.io/vladopajic/testcoverage:${{ env.RELEASE_VERSION }}
-            ghcr.io/vladopajic/testcoverage:${{ steps.majorver.outputs.major-tag }}
-            ghcr.io/vladopajic/testcoverage:latest
+            ghcr.io/vladopajic/go-testcoverage:${{ env.RELEASE_VERSION }}
+            ghcr.io/vladopajic/go-testcoverage:${{ steps.majorver.outputs.major-tag }}
+            ghcr.io/vladopajic/go-testcoverage:latest

@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/vladopajic/testcoverage/pkg/testcoverage"
+	"github.com/vladopajic/go-testcoverage/pkg/testcoverage"
 )
 
 // Version is the git reference injected at build
