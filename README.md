@@ -3,7 +3,6 @@
 [![lint](https://github.com/vladopajic/go-testcoverage/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/vladopajic/go-testcoverage/actions/workflows/lint.yml)
 [![test](https://github.com/vladopajic/go-testcoverage/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/vladopajic/go-testcoverage/actions/workflows/test.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/vladopajic/go-testcoverage?cache=v1)](https://goreportcard.com/report/github.com/vladopajic/go-testcoverage)
-[![codecov](https://codecov.io/gh/vladopajic/go-testcoverage/branch/main/graph/badge.svg?token=WYCKb1MLgl)](https://codecov.io/gh/vladopajic/go-testcoverage)
 [![GoDoc](https://godoc.org/github.com/vladopajic/go-testcoverage?status.svg)](https://godoc.org/github.com/vladopajic/go-testcoverage)
 [![Release](https://img.shields.io/github/release/vladopajic/go-testcoverage.svg?style=flat-square)](https://github.com/vladopajic/go-testcoverage/releases/latest)
 
