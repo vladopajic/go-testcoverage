@@ -13,18 +13,18 @@
 
 ```yml
 name: Go test coverage check
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
-      
-      - name: test (generate coverage)
-        run: go test ./... -coverprofile=./cover.out
+runs-on: ubuntu-latest
+steps:
+  - uses: actions/checkout@v3
+  - uses: actions/setup-go@v3
 
-      - name: check test coverage
-        uses: vladopajic/go-testcoverage@v1
-        with:
-          config: ./.testcoverage.yml  # (config file is mandatory)
+  - name: test (generate coverage)
+    run: go test ./... -coverprofile=./cover.out
+
+  - name: check test coverage
+    uses: vladopajic/go-testcoverage@v1
+    with:
+      config: ./.testcoverage.yml  # (config file is mandatory)
 ```
 
 ### Config
