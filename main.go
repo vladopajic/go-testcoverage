@@ -45,7 +45,7 @@ func readConfig() (*testcoverage.Config, error) {
 
 	cfg, err := testcoverage.ConfigFromFile(configPath)
 	if err != nil {
-		return nil, err //nolint:wrapcheck // relax
+		return nil, fmt.Errorf("failed loading config from file: %w", err)
 	}
 
 	if err := cfg.Validate(); err != nil {
