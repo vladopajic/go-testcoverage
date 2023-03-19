@@ -1,4 +1,4 @@
-# go-go-testcoverage
+# go-testcoverage
 
 [![lint](https://github.com/vladopajic/go-testcoverage/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/vladopajic/go-testcoverage/actions/workflows/lint.yml)
 [![test](https://github.com/vladopajic/go-testcoverage/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/vladopajic/go-testcoverage/actions/workflows/test.yml)
