@@ -9,6 +9,8 @@ import (
 )
 
 // Version is the git reference injected at build
+//
+//nolint:gochecknoglobals // must be global var
 var Version string
 
 //nolint:forbidigo // relax
