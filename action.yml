@@ -7,6 +7,6 @@ inputs:
     required: true
 runs:
   using: docker
-  image: docker://ghcr.io/vladopajic/go-testcoverage:v0.1.0
+  image: docker://ghcr.io/vladopajic/go-testcoverage:v1.0.0
   args:
     - -config=${{ inputs.config }}
