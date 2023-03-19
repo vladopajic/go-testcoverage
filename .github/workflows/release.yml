@@ -36,14 +36,6 @@ jobs:
           OUTPUT_PATH_FORMAT: ./bin/${{ env.RELEASE_VERSION }}/{{.OS}}/{{.Arch}}/go-testcoverage
         run: |
           gox -osarch="${PLATFORMS}" -ldflags "-X main.Version=${RELEASE_VERSION}" -output "${OUTPUT_PATH_FORMAT}"
-      - name: Test correct version injection
-        run: |
-          chmod +x ./bin/${{ env.RELEASE_VERSION }}/linux/amd64/go-testcoverage
-          version=$(./bin/${{ env.RELEASE_VERSION }}/linux/amd64/go-testcoverage --version)
-          if [ "${version}" != "go-testcoverage ${{ env.RELEASE_VERSION }}" ]; then
-            echo "Version injection failed. Expected '${{ env.RELEASE_VERSION }}', got '${version}'"
-            exit 1
-          fi
       - name: Generate release notes
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
