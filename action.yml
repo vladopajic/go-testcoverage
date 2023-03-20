@@ -10,3 +10,6 @@ runs:
   image: docker://ghcr.io/vladopajic/go-testcoverage:v1.0.0
   args:
     - -config=${{ inputs.config }}
+branding:
+  icon: 'code'
+  color: 'blue'
